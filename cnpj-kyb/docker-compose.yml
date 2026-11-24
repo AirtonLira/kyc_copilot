@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sleep infinity   # fica de pé; rodamos tudo com `docker compose exec app ...`
+    depends_on:
+      - neo4j
+
+  neo4j:
+    image: neo4j:5.26-community
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}
+    ports:
+      - "7474:7474"   # navegador do Neo4j
+      - "7687:7687"   # conexão do código
+    volumes:
+      - neo4j_data:/data
+
+volumes:
+  neo4j_data:
