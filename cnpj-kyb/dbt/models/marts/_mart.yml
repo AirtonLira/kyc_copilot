@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_empresa
+    columns:
+      - name: cnpj_basico
+        data_tests: [unique, not_null]
+
+  - name: fato_socio
+    columns:
+      - name: socio_chave
+        data_tests: [not_null]
