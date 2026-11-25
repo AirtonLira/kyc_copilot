@@ -1,13 +1,21 @@
+x-app: &app                    # bloco reaproveitado pelos serviços que usam o nosso container Python
+  build: .
+  env_file: .env
+  working_dir: /app
+  volumes:
+    - .:/app
+
 services:
   app:
-    build: .
-    env_file: .env
-    working_dir: /app
-    volumes:
-      - .:/app
-    command: sleep infinity   # fica de pé; rodamos tudo com `docker compose exec app ...`
+    <<: *app
+    command: sleep infinity    # fica de pé; rodamos tudo com `docker compose exec app ...`
     depends_on:
       - neo4j
+
+  check-raw:
+    <<: *app
+    profiles: ["tools"]        # não sobe com `docker compose up`; só quando chamado
+    command: python scripts/check_raw.py
 
   neo4j:
     image: neo4j:5.26-community
