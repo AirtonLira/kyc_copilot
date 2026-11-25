@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: slice_cnpj
+    columns:
+      - name: cnpj_basico
+        data_tests: [unique, not_null]
+
+  - name: stg_empresas
+    columns:
+      - name: cnpj_basico
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('slice_cnpj')
+                field: cnpj_basico
+
+  - name: stg_estabelecimentos
+    columns:
+      - name: cnpj
+        data_tests: [unique, not_null]
+      - name: cnpj_basico
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_empresas')
+                field: cnpj_basico
+              config:
+                severity: warn
+      - name: situacao_cadastral
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['nula', 'ativa', 'suspensa', 'inapta', 'baixada']
+          - not_null:
+              config:
+                severity: warn
+
+  - name: stg_socios
+    columns:
+      - name: cnpj_basico
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_empresas')
+                field: cnpj_basico
+              config:
+                severity: warn
+
+  - name: stg_simples
+    columns:
+      - name: cnpj_basico
+        data_tests: [unique, not_null]
