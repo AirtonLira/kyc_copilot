@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: empresas
+      - name: estabelecimentos
+      - name: socios
+      - name: simples
+      - name: cnaes
+      - name: municipios
+      - name: naturezas_juridicas
+      - name: qualificacoes_socios
+      - name: motivos_situacoes
+      - name: paises

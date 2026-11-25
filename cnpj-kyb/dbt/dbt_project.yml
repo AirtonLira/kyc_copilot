@@ -1,0 +1,12 @@
+name: kyb
+version: "1.0.0"
+profile: kyb
+
+vars:
+  ufs: ["SP","MG","RJ","PR","RS","BA"]          # troque pelas UFs que você escolheu no passo 2.0
+  recorte_min: 50000000
+  recorte_max: 160000000
+
+models:
+  kyb:
+    +materialized: table

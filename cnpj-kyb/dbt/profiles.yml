@@ -1,0 +1,10 @@
+kyb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /app/data/kyb.duckdb
+      threads: 4
+      settings:
+        memory_limit: "10GB"             
+        preserve_insertion_order: false  # gasta menos memória em tabelas grandes
