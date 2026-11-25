@@ -1,6 +1,21 @@
+# segredos
 .env
+
+# ambiente python
 .venv/
-data/
-dbt/target/
-dbt/logs/
 __pycache__/
+*.pyc
+
+# dados (grandes e reproduzíveis)
+data/
+
+# dbt
+cnpj-kyb/dbt/target/
+cnpj-kyb/dbt/logs/
+cnpj-kyb/dbt/.user.yml
+cnpj-kyb/dbt/dbt_packages/
+
+# sistema e editor
+.DS_Store
+.idea/
+.vscode/
